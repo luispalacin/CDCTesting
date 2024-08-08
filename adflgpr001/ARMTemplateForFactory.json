@@ -33,6 +33,81 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('factoryName'), '/adls_to_sqldb')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data CDC",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "ParquetSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFolderPath": "Products",
+									"wildcardFileName": "*.parquet",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "ParquetReadSettings"
+								}
+							},
+							"sink": {
+								"type": "AzureSqlSink",
+								"writeBehavior": "insert",
+								"sqlWriterUseTableLock": false,
+								"tableOption": "autoCreate",
+								"disableMetricsCollection": false
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "ds_productsparquet",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "ds_products_cdc",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_productsparquet')]",
+				"[concat(variables('factoryId'), '/datasets/ds_products_cdc')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/plptesting_sql_to_adls')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -99,6 +174,27 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/ds_sql_products')]",
 				"[concat(variables('factoryId'), '/datasets/ds_productsparquet')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_products_cdc')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureSqlDatabase1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": "Sales",
+					"table": "Product_CDC"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase1')]"
 			]
 		},
 		{
@@ -269,7 +365,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/SDCTesting')]",
+			"name": "[concat(parameters('factoryName'), '/cdcProducts')]",
 			"type": "Microsoft.DataFactory/factories/adfcdcs",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -476,7 +572,7 @@
 					{
 						"TargetEntities": [
 							{
-								"name": "SalesLT.Product",
+								"name": "Sales.Product_CDC",
 								"properties": {
 									"schema": [
 										{
@@ -551,11 +647,11 @@
 									"dslConnectorProperties": [
 										{
 											"name": "schemaName",
-											"value": "SalesLT"
+											"value": "Sales"
 										},
 										{
 											"name": "tableName",
-											"value": "Product"
+											"value": "Product_CDC"
 										},
 										{
 											"name": "allowSchemaDrift",
@@ -652,7 +748,7 @@
 						},
 						"DataMapperMappings": [
 							{
-								"targetEntityName": "SalesLT.Product",
+								"targetEntityName": "Sales.Product_CDC",
 								"sourceEntityName": "raw/Products",
 								"sourceConnectionReference": {
 									"connectionName": "ls_datalake",
@@ -891,11 +987,10 @@
 				"Policy": {
 					"recurrence": {
 						"frequency": "Minute",
-						"interval": 1
+						"interval": 15
 					},
 					"mode": "Microbatch"
 				},
-				"status": "Stopped",
 				"allowVNetOverride": false
 			},
 			"dependsOn": [
