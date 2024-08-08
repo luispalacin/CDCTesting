@@ -1,5 +1,5 @@
 {
-	"name": "plptesting_sql_to_adls",
+	"name": "plptesting_adls_to_sql",
 	"properties": {
 		"activities": [
 			{
@@ -16,18 +16,24 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
-					},
-					"sink": {
-						"type": "ParquetSink",
+						"type": "ParquetSource",
 						"storeSettings": {
-							"type": "AzureBlobStorageWriteSettings"
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "ParquetWriteSettings"
+							"type": "ParquetReadSettings"
 						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "upsert",
+						"upsertSettings": {
+							"useTempDB": true
+						},
+						"sqlWriterUseTableLock": false,
+						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
 					"translator": {
@@ -41,13 +47,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_sql_products",
+						"referenceName": "ds_productsparquet",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_productsparquet",
+						"referenceName": "ds_sql_products",
 						"type": "DatasetReference"
 					}
 				]

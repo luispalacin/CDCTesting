@@ -1,0 +1,628 @@
+{
+	"name": "SDCTesting",
+	"properties": {
+		"SourceConnectionsInfo": [
+			{
+				"SourceEntities": [
+					{
+						"name": "raw/Products",
+						"properties": {
+							"schema": [
+								{
+									"name": "ProductID",
+									"dataType": "integer"
+								},
+								{
+									"name": "Name",
+									"dataType": "string"
+								},
+								{
+									"name": "ProductNumber",
+									"dataType": "string"
+								},
+								{
+									"name": "Color",
+									"dataType": "string"
+								},
+								{
+									"name": "StandardCost",
+									"dataType": "decimal(19,4)"
+								},
+								{
+									"name": "ListPrice",
+									"dataType": "decimal(19,4)"
+								},
+								{
+									"name": "Size",
+									"dataType": "string"
+								},
+								{
+									"name": "Weight",
+									"dataType": "decimal(8,2)"
+								},
+								{
+									"name": "ProductCategoryID",
+									"dataType": "integer"
+								},
+								{
+									"name": "ProductModelID",
+									"dataType": "integer"
+								},
+								{
+									"name": "SellStartDate",
+									"dataType": "timestamp"
+								},
+								{
+									"name": "SellEndDate",
+									"dataType": "timestamp"
+								},
+								{
+									"name": "DiscontinuedDate",
+									"dataType": "timestamp"
+								},
+								{
+									"name": "ThumbNailPhoto",
+									"dataType": "binary"
+								},
+								{
+									"name": "ThumbnailPhotoFileName",
+									"dataType": "string"
+								},
+								{
+									"name": "rowguid",
+									"dataType": "string"
+								},
+								{
+									"name": "ModifiedDate",
+									"dataType": "timestamp"
+								}
+							],
+							"dslConnectorProperties": [
+								{
+									"name": "container",
+									"value": "raw"
+								},
+								{
+									"name": "fileSystem",
+									"value": "raw"
+								},
+								{
+									"name": "folderPath",
+									"value": "Products"
+								},
+								{
+									"name": "allowSchemaDrift",
+									"value": false
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": false
+								}
+							]
+						}
+					}
+				],
+				"Connection": {
+					"linkedService": {
+						"referenceName": "ls_datalake",
+						"type": "LinkedServiceReference"
+					},
+					"linkedServiceType": "AzureBlobStorage",
+					"type": "linkedservicetype",
+					"isInlineDataset": true,
+					"commonDslConnectorProperties": [
+						{
+							"name": "allowSchemaDrift",
+							"value": true
+						},
+						{
+							"name": "inferDriftedColumnTypes",
+							"value": true
+						},
+						{
+							"name": "format",
+							"value": "parquet"
+						},
+						{
+							"name": "dateFormats",
+							"value": [
+								"MM/dd/yyyy",
+								"dd/MM/yyyy",
+								"yyyy/MM/dd",
+								"MM-dd-yyyy",
+								"dd-MM-yyyy",
+								"yyyy-MM-dd",
+								"dd.MM.yyyy",
+								"MM.dd.yyyy",
+								"yyyy.MM.dd"
+							]
+						},
+						{
+							"name": "timestampFormats",
+							"value": [
+								"yyyyMMddHHmm",
+								"yyyyMMdd HHmm",
+								"yyyyMMddHHmmss",
+								"yyyyMMdd HHmmss",
+								"dd-MM-yyyy HH:mm:ss",
+								"dd-MM-yyyy HH:mm",
+								"yyyy-M-d H:m:s",
+								"yyyy-MM-dd\\'T\\'HH:mm:ss\\'Z\\'",
+								"yyyy-M-d\\'T\\'H:m:s\\'Z\\'",
+								"yyyy-M-d\\'T\\'H:m:s",
+								"yyyy-MM-dd\\'T\\'HH:mm:ss",
+								"yyyy-MM-dd HH:mm:ss",
+								"yyyy-MM-dd HH:mm",
+								"yyyy.MM.dd HH:mm:ss",
+								"MM/dd/yyyy HH:mm:ss",
+								"M/d/yyyy H:m:s",
+								"yyyy/MM/dd HH:mm:ss",
+								"yyyy/M/d H:m:s",
+								"dd MMM yyyy HH:mm:ss",
+								"dd MMMM yyyy HH:mm:ss",
+								"d MMM yyyy H:m:s",
+								"d MMMM yyyy H:m:s",
+								"d-M-yyyy H:m:s",
+								"d-M-yyyy H:m",
+								"yyyy-M-d H:m",
+								"MM/dd/yyyy HH:mm",
+								"M/d/yyyy H:m",
+								"yyyy/MM/dd HH:mm",
+								"yyyy/M/d H:m",
+								"dd MMMM yyyy HH:mm",
+								"dd MMM yyyy HH:mm",
+								"d MMMM yyyy H:m",
+								"d MMM yyyy H:m",
+								"MM-dd-yyyy hh:mm:ss a",
+								"MM-dd-yyyy HH:mm:ss",
+								"MM/dd/yyyy hh:mm:ss a",
+								"yyyy.MM.dd hh:mm:ss a",
+								"MM/dd/yyyy",
+								"dd/MM/yyyy",
+								"yyyy/MM/dd",
+								"MM-dd-yyyy",
+								"dd-MM-yyyy",
+								"yyyy-MM-dd",
+								"dd.MM.yyyy",
+								"MM.dd.yyyy",
+								"yyyy.MM.dd"
+							]
+						},
+						{
+							"name": "enableCdc",
+							"value": true
+						},
+						{
+							"name": "skipInitialLoad",
+							"value": true
+						}
+					]
+				}
+			}
+		],
+		"TargetConnectionsInfo": [
+			{
+				"TargetEntities": [
+					{
+						"name": "SalesLT.Product",
+						"properties": {
+							"schema": [
+								{
+									"name": "ProductID",
+									"dataType": "integer"
+								},
+								{
+									"name": "Name",
+									"dataType": "string"
+								},
+								{
+									"name": "ProductNumber",
+									"dataType": "string"
+								},
+								{
+									"name": "Color",
+									"dataType": "string"
+								},
+								{
+									"name": "StandardCost",
+									"dataType": "decimal(19,4)"
+								},
+								{
+									"name": "ListPrice",
+									"dataType": "decimal(19,4)"
+								},
+								{
+									"name": "Size",
+									"dataType": "string"
+								},
+								{
+									"name": "Weight",
+									"dataType": "decimal(8,2)"
+								},
+								{
+									"name": "ProductCategoryID",
+									"dataType": "integer"
+								},
+								{
+									"name": "ProductModelID",
+									"dataType": "integer"
+								},
+								{
+									"name": "SellStartDate",
+									"dataType": "timestamp"
+								},
+								{
+									"name": "SellEndDate",
+									"dataType": "timestamp"
+								},
+								{
+									"name": "DiscontinuedDate",
+									"dataType": "timestamp"
+								},
+								{
+									"name": "ThumbNailPhoto",
+									"dataType": "binary"
+								},
+								{
+									"name": "ThumbnailPhotoFileName",
+									"dataType": "string"
+								},
+								{
+									"name": "rowguid",
+									"dataType": "string"
+								},
+								{
+									"name": "ModifiedDate",
+									"dataType": "timestamp"
+								}
+							],
+							"dslConnectorProperties": [
+								{
+									"name": "schemaName",
+									"value": "SalesLT"
+								},
+								{
+									"name": "tableName",
+									"value": "Product"
+								},
+								{
+									"name": "allowSchemaDrift",
+									"value": false
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": false
+								},
+								{
+									"name": "keys",
+									"value": [
+										"ProductID"
+									]
+								},
+								{
+									"name": "deletable",
+									"value": true
+								},
+								{
+									"name": "updateable",
+									"value": true
+								},
+								{
+									"name": "upsertable",
+									"value": true
+								},
+								{
+									"name": "defaultToUpsert",
+									"value": true
+								}
+							]
+						}
+					}
+				],
+				"Connection": {
+					"linkedService": {
+						"referenceName": "AzureSqlDatabase1",
+						"type": "LinkedServiceReference"
+					},
+					"linkedServiceType": "AzureSqlDatabase",
+					"type": "linkedservicetype",
+					"isInlineDataset": true,
+					"commonDslConnectorProperties": [
+						{
+							"name": "allowSchemaDrift",
+							"value": true
+						},
+						{
+							"name": "inferDriftedColumnTypes",
+							"value": true
+						},
+						{
+							"name": "format",
+							"value": "table"
+						},
+						{
+							"name": "store",
+							"value": "sqlserver"
+						},
+						{
+							"name": "databaseType",
+							"value": "databaseType"
+						},
+						{
+							"name": "database",
+							"value": "database"
+						},
+						{
+							"name": "deletable",
+							"value": false
+						},
+						{
+							"name": "insertable",
+							"value": true
+						},
+						{
+							"name": "updateable",
+							"value": false
+						},
+						{
+							"name": "upsertable",
+							"value": false
+						},
+						{
+							"name": "skipDuplicateMapInputs",
+							"value": true
+						},
+						{
+							"name": "skipDuplicateMapOutputs",
+							"value": true
+						}
+					]
+				},
+				"DataMapperMappings": [
+					{
+						"targetEntityName": "SalesLT.Product",
+						"sourceEntityName": "raw/Products",
+						"sourceConnectionReference": {
+							"connectionName": "ls_datalake",
+							"type": "linkedservicetype"
+						},
+						"attributeMappingInfo": {
+							"attributeMappings": [
+								{
+									"name": "Color",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "Color",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "DiscontinuedDate",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "DiscontinuedDate",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ListPrice",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ListPrice",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ModifiedDate",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ModifiedDate",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "Name",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "Name",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ProductCategoryID",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ProductCategoryID",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ProductID",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ProductID",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ProductModelID",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ProductModelID",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ProductNumber",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ProductNumber",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "rowguid",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "rowguid",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "SellEndDate",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "SellEndDate",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "SellStartDate",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "SellStartDate",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "Size",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "Size",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "StandardCost",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "StandardCost",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ThumbNailPhoto",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ThumbNailPhoto",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ThumbnailPhotoFileName",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ThumbnailPhotoFileName",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "Weight",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "Weight",
+										"entity": "raw/Products",
+										"entityConnectionReference": {
+											"connectionName": "ls_datalake",
+											"type": "linkedservicetype"
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"Relationships": []
+			}
+		],
+		"Policy": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15
+			},
+			"mode": "Microbatch"
+		},
+		"allowVNetOverride": false
+	}
+}
