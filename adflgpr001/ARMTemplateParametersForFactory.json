@@ -11,6 +11,9 @@
 		"ls_datalake_connectionString": {
 			"value": ""
 		},
+		"ls_adls_products_accountKey": {
+			"value": ""
+		},
 		"AzureSqlDatabase1_properties_typeProperties_server": {
 			"value": "sqlsrvlgpr001.database.windows.net"
 		},
@@ -19,6 +22,9 @@
 		},
 		"AzureSqlDatabase1_properties_typeProperties_userName": {
 			"value": "sqladmin"
+		},
+		"ls_adls_products_properties_typeProperties_url": {
+			"value": "https://salgpr001.dfs.core.windows.net/"
 		}
 	}
 }
