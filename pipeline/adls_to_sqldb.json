@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "adls_to_sqldb",
 	"properties": {
 		"activities": [
 			{
