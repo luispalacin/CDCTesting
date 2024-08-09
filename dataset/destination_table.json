@@ -92,7 +92,7 @@
 		],
 		"typeProperties": {
 			"schema": "Sales",
-			"table": "Product_CDC"
+			"table": "Product_Destination_CDC"
 		}
 	}
 }
