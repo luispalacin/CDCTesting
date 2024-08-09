@@ -1,0 +1,493 @@
+{
+	"name": "productscdc",
+	"properties": {
+		"SourceConnectionsInfo": [
+			{
+				"SourceEntities": [
+					{
+						"name": "Sales.Product_CDC",
+						"properties": {
+							"schema": [
+								{
+									"name": "ProductID",
+									"dataType": "integer"
+								},
+								{
+									"name": "Name",
+									"dataType": "string"
+								},
+								{
+									"name": "ProductNumber",
+									"dataType": "string"
+								},
+								{
+									"name": "Color",
+									"dataType": "string"
+								},
+								{
+									"name": "StandardCost",
+									"dataType": "decimal(19,4)"
+								},
+								{
+									"name": "ListPrice",
+									"dataType": "decimal(19,4)"
+								},
+								{
+									"name": "Size",
+									"dataType": "string"
+								},
+								{
+									"name": "Weight",
+									"dataType": "decimal(8,2)"
+								},
+								{
+									"name": "ProductCategoryID",
+									"dataType": "integer"
+								},
+								{
+									"name": "ProductModelID",
+									"dataType": "integer"
+								},
+								{
+									"name": "SellStartDate",
+									"dataType": "timestamp"
+								},
+								{
+									"name": "SellEndDate",
+									"dataType": "timestamp"
+								},
+								{
+									"name": "DiscontinuedDate",
+									"dataType": "timestamp"
+								},
+								{
+									"name": "ThumbNailPhoto",
+									"dataType": "binary"
+								},
+								{
+									"name": "ThumbnailPhotoFileName",
+									"dataType": "string"
+								},
+								{
+									"name": "rowguid",
+									"dataType": "string"
+								},
+								{
+									"name": "ModifiedDate",
+									"dataType": "timestamp"
+								}
+							],
+							"dslConnectorProperties": [
+								{
+									"name": "schemaName",
+									"value": "Sales"
+								},
+								{
+									"name": "tableName",
+									"value": "Product_CDC"
+								},
+								{
+									"name": "enableNativeCdc",
+									"value": true
+								},
+								{
+									"name": "netChanges",
+									"value": true
+								},
+								{
+									"name": "allowSchemaDrift",
+									"value": false
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": false
+								}
+							]
+						}
+					}
+				],
+				"Connection": {
+					"linkedService": {
+						"referenceName": "ls_AdventureWorks_sql",
+						"type": "LinkedServiceReference"
+					},
+					"linkedServiceType": "AzureSqlDatabase",
+					"type": "linkedservicetype",
+					"isInlineDataset": true,
+					"commonDslConnectorProperties": [
+						{
+							"name": "allowSchemaDrift",
+							"value": true
+						},
+						{
+							"name": "inferDriftedColumnTypes",
+							"value": true
+						},
+						{
+							"name": "format",
+							"value": "table"
+						},
+						{
+							"name": "store",
+							"value": "sqlserver"
+						},
+						{
+							"name": "databaseType",
+							"value": "databaseType"
+						},
+						{
+							"name": "database",
+							"value": "database"
+						},
+						{
+							"name": "skipInitialLoad",
+							"value": true
+						}
+					]
+				}
+			}
+		],
+		"TargetConnectionsInfo": [
+			{
+				"TargetEntities": [
+					{
+						"name": "Sales.Product_Destination_CDC",
+						"properties": {
+							"schema": [],
+							"dslConnectorProperties": [
+								{
+									"name": "schemaName",
+									"value": "Sales"
+								},
+								{
+									"name": "tableName",
+									"value": "Product_Destination_CDC"
+								},
+								{
+									"name": "allowSchemaDrift",
+									"value": true
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": true
+								},
+								{
+									"name": "keys",
+									"value": [
+										"ProductID"
+									]
+								},
+								{
+									"name": "deletable",
+									"value": true
+								},
+								{
+									"name": "updateable",
+									"value": true
+								},
+								{
+									"name": "upsertable",
+									"value": true
+								},
+								{
+									"name": "defaultToUpsert",
+									"value": true
+								}
+							]
+						}
+					}
+				],
+				"Connection": {
+					"linkedService": {
+						"referenceName": "ls_AdventureWorks_sql",
+						"type": "LinkedServiceReference"
+					},
+					"linkedServiceType": "AzureSqlDatabase",
+					"type": "linkedservicetype",
+					"isInlineDataset": true,
+					"commonDslConnectorProperties": [
+						{
+							"name": "allowSchemaDrift",
+							"value": true
+						},
+						{
+							"name": "inferDriftedColumnTypes",
+							"value": true
+						},
+						{
+							"name": "format",
+							"value": "table"
+						},
+						{
+							"name": "store",
+							"value": "sqlserver"
+						},
+						{
+							"name": "databaseType",
+							"value": "databaseType"
+						},
+						{
+							"name": "database",
+							"value": "database"
+						},
+						{
+							"name": "deletable",
+							"value": false
+						},
+						{
+							"name": "insertable",
+							"value": true
+						},
+						{
+							"name": "updateable",
+							"value": false
+						},
+						{
+							"name": "upsertable",
+							"value": false
+						},
+						{
+							"name": "skipDuplicateMapInputs",
+							"value": true
+						},
+						{
+							"name": "skipDuplicateMapOutputs",
+							"value": true
+						}
+					]
+				},
+				"DataMapperMappings": [
+					{
+						"targetEntityName": "Sales.Product_Destination_CDC",
+						"sourceEntityName": "Sales.Product_CDC",
+						"sourceConnectionReference": {
+							"connectionName": "ls_AdventureWorks_sql",
+							"type": "linkedservicetype"
+						},
+						"attributeMappingInfo": {
+							"attributeMappings": [
+								{
+									"name": "DiscontinuedDate",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "DiscontinuedDate",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ListPrice",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ListPrice",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ModifiedDate",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ModifiedDate",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "Name",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "Name",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ProductCategoryID",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ProductCategoryID",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ProductID",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ProductID",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ProductModelID",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ProductModelID",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ProductNumber",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ProductNumber",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "rowguid",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "rowguid",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "SellEndDate",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "SellEndDate",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "SellStartDate",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "SellStartDate",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "Size",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "Size",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "StandardCost",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "StandardCost",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ThumbNailPhoto",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ThumbNailPhoto",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "ThumbnailPhotoFileName",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "ThumbnailPhotoFileName",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "Weight",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "Weight",
+										"entity": "Sales.Product_CDC",
+										"entityConnectionReference": {
+											"connectionName": "ls_AdventureWorks_sql",
+											"type": "linkedservicetype"
+										}
+									}
+								}
+							]
+						}
+					}
+				],
+				"Relationships": []
+			}
+		],
+		"Policy": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 1
+			},
+			"mode": "Microbatch"
+		},
+		"allowVNetOverride": false
+	}
+}
