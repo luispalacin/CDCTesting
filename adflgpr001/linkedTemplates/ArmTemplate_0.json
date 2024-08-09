@@ -278,7 +278,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/productscdc')]",
+			"name": "[concat(parameters('factoryName'), '/productcdc')]",
 			"type": "Microsoft.DataFactory/factories/adfcdcs",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -432,9 +432,94 @@
 					{
 						"TargetEntities": [
 							{
-								"name": "Sales.Product_Destination_CDC",
+								"name": "Sales.Product_CDC",
 								"properties": {
 									"schema": [],
+									"dslConnectorProperties": [
+										{
+											"name": "schemaName",
+											"value": "Sales"
+										},
+										{
+											"name": "tableName",
+											"value": "Product_CDC"
+										}
+									]
+								}
+							},
+							{
+								"name": "Sales.Product_Destination_CDC",
+								"properties": {
+									"schema": [
+										{
+											"name": "ProductID",
+											"dataType": "integer"
+										},
+										{
+											"name": "Name",
+											"dataType": "string"
+										},
+										{
+											"name": "ProductNumber",
+											"dataType": "string"
+										},
+										{
+											"name": "Color",
+											"dataType": "string"
+										},
+										{
+											"name": "StandardCost",
+											"dataType": "decimal(19,4)"
+										},
+										{
+											"name": "ListPrice",
+											"dataType": "decimal(19,4)"
+										},
+										{
+											"name": "Size",
+											"dataType": "string"
+										},
+										{
+											"name": "Weight",
+											"dataType": "decimal(8,2)"
+										},
+										{
+											"name": "ProductCategoryID",
+											"dataType": "integer"
+										},
+										{
+											"name": "ProductModelID",
+											"dataType": "integer"
+										},
+										{
+											"name": "SellStartDate",
+											"dataType": "timestamp"
+										},
+										{
+											"name": "SellEndDate",
+											"dataType": "timestamp"
+										},
+										{
+											"name": "DiscontinuedDate",
+											"dataType": "timestamp"
+										},
+										{
+											"name": "ThumbNailPhoto",
+											"dataType": "binary"
+										},
+										{
+											"name": "ThumbnailPhotoFileName",
+											"dataType": "string"
+										},
+										{
+											"name": "rowguid",
+											"dataType": "string"
+										},
+										{
+											"name": "ModifiedDate",
+											"dataType": "timestamp"
+										}
+									],
 									"dslConnectorProperties": [
 										{
 											"name": "schemaName",
@@ -446,11 +531,11 @@
 										},
 										{
 											"name": "allowSchemaDrift",
-											"value": true
+											"value": false
 										},
 										{
 											"name": "inferDriftedColumnTypes",
-											"value": true
+											"value": false
 										},
 										{
 											"name": "keys",
