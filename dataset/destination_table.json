@@ -1,0 +1,98 @@
+{
+	"name": "destination_table",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_AdventureWorks_sql",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "ProductID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ProductNumber",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Color",
+				"type": "nvarchar"
+			},
+			{
+				"name": "StandardCost",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "ListPrice",
+				"type": "decimal",
+				"precision": 19,
+				"scale": 4
+			},
+			{
+				"name": "Size",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Weight",
+				"type": "decimal",
+				"precision": 8,
+				"scale": 2
+			},
+			{
+				"name": "ProductCategoryID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "ProductModelID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "SellStartDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "SellEndDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "DiscontinuedDate",
+				"type": "datetime2",
+				"scale": 7
+			},
+			{
+				"name": "ThumbNailPhoto",
+				"type": "varbinary"
+			},
+			{
+				"name": "ThumbnailPhotoFileName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "rowguid",
+				"type": "nvarchar"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime2",
+				"scale": 7
+			}
+		],
+		"typeProperties": {
+			"schema": "Sales",
+			"table": "Product_CDC"
+		}
+	}
+}
