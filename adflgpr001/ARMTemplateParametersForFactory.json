@@ -5,26 +5,20 @@
 		"factoryName": {
 			"value": "adflgpr001"
 		},
-		"AzureSqlDatabase1_password": {
-			"value": ""
-		},
 		"ls_datalake_connectionString": {
 			"value": ""
 		},
-		"ls_adls_products_accountKey": {
+		"ls_AdventureWorks_sql_password": {
 			"value": ""
 		},
-		"AzureSqlDatabase1_properties_typeProperties_server": {
+		"ls_AdventureWorks_sql_properties_typeProperties_server": {
 			"value": "sqlsrvlgpr001.database.windows.net"
 		},
-		"AzureSqlDatabase1_properties_typeProperties_database": {
+		"ls_AdventureWorks_sql_properties_typeProperties_database": {
 			"value": "sqldblgpr001"
 		},
-		"AzureSqlDatabase1_properties_typeProperties_userName": {
+		"ls_AdventureWorks_sql_properties_typeProperties_userName": {
 			"value": "sqladmin"
-		},
-		"ls_adls_products_properties_typeProperties_url": {
-			"value": "https://salgpr001.dfs.core.windows.net/"
 		}
 	}
 }
