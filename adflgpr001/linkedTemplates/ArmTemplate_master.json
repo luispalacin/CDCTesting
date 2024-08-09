@@ -7,13 +7,13 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adflgpr001"
 		},
-		"ls_datalake_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'ls_datalake'"
-		},
 		"ls_AdventureWorks_sql_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'ls_AdventureWorks_sql'"
+		},
+		"ls_datalake_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_datalake'"
 		},
 		"ls_AdventureWorks_sql_properties_typeProperties_server": {
 			"type": "string",
@@ -54,11 +54,11 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
-					"ls_datalake_connectionString": {
-						"value": "[parameters('ls_datalake_connectionString')]"
-					},
 					"ls_AdventureWorks_sql_password": {
 						"value": "[parameters('ls_AdventureWorks_sql_password')]"
+					},
+					"ls_datalake_connectionString": {
+						"value": "[parameters('ls_datalake_connectionString')]"
 					},
 					"ls_AdventureWorks_sql_properties_typeProperties_server": {
 						"value": "[parameters('ls_AdventureWorks_sql_properties_typeProperties_server')]"

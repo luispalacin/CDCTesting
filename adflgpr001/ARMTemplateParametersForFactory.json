@@ -5,10 +5,10 @@
 		"factoryName": {
 			"value": "adflgpr001"
 		},
-		"ls_datalake_connectionString": {
+		"ls_AdventureWorks_sql_password": {
 			"value": ""
 		},
-		"ls_AdventureWorks_sql_password": {
+		"ls_datalake_connectionString": {
 			"value": ""
 		},
 		"ls_AdventureWorks_sql_properties_typeProperties_server": {
